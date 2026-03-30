@@ -1,4 +1,3 @@
-import time
 import requests
 
 BASE_URL = "https://backend.blotato.com/v2"
@@ -23,8 +22,7 @@ def upload_media(public_url: str, api_key: str) -> str:
         raise Exception(f"Media upload failed {resp.status_code}: {resp.text}")
     data = resp.json()
     print(f"  Blotato media response: {data}")
-    # Blotato returns the processed media URL
-    return data.get("url") or data.get("mediaUrl") or public_url
+    return data.get("url") or public_url
 
 
 def post_to_youtube(
@@ -37,15 +35,17 @@ def post_to_youtube(
     """Publishes a video to YouTube via Blotato. Returns the postSubmissionId."""
     payload = {
         "post": {
-            "accountId": int(youtube_account_id),
-            "target": {
-                "targetType": "youtube",
-            },
+            "accountId": youtube_account_id,
             "content": {
                 "platform": "youtube",
                 "text": description or title,
                 "mediaUrls": [media_url],
+            },
+            "target": {
+                "targetType": "youtube",
                 "title": title,
+                "privacyStatus": "public",
+                "shouldNotifySubscribers": True,
                 "isMadeForKids": False,
             },
         }
@@ -70,15 +70,15 @@ def post_to_instagram(
     """Publishes a video Reel to Instagram via Blotato. Returns the postSubmissionId."""
     payload = {
         "post": {
-            "accountId": int(instagram_account_id),
-            "target": {
-                "targetType": "instagram",
-            },
+            "accountId": instagram_account_id,
             "content": {
                 "platform": "instagram",
                 "text": caption,
                 "mediaUrls": [media_url],
-                "format": "reel",
+            },
+            "target": {
+                "targetType": "instagram",
+                "mediaType": "reel",
             },
         }
     }
