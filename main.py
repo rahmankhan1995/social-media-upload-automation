@@ -40,11 +40,20 @@ def process_channel(channel_id: str, channel: dict):
     file_name = video["name"]
     print(f"  Found video: {file_name} ({file_id})")
 
-    # Title = filename without extension (editors name the file = YouTube title)
-    title = os.path.splitext(file_name)[0]
-    # Instagram caption = title + channel hashtags
+    # Parse filename: "YouTube Title | Instagram Caption.mp4"
+    # If no "|", the same text is used for both YouTube title and Instagram caption
+    full_name = os.path.splitext(file_name)[0]
+    if "|" in full_name:
+        title, ig_caption = [part.strip() for part in full_name.split("|", 1)]
+    else:
+        title = full_name
+        ig_caption = full_name
+    # Append channel hashtags to Instagram caption
     hashtags = channel.get("instagram_hashtags", "")
-    ig_caption = f"{title}\n\n{hashtags}" if hashtags else title
+    if hashtags:
+        ig_caption = f"{ig_caption}\n\n{hashtags}"
+    print(f"  YouTube title: {title}")
+    print(f"  Instagram caption: {ig_caption}")
 
     public_url = None
     yt_submission = ""
