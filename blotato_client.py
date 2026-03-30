@@ -19,8 +19,10 @@ def upload_media(public_url: str, api_key: str) -> str:
         headers=_headers(api_key),
         timeout=120,
     )
-    resp.raise_for_status()
+    if not resp.ok:
+        raise Exception(f"Media upload failed {resp.status_code}: {resp.text}")
     data = resp.json()
+    print(f"  Blotato media response: {data}")
     # Blotato returns the processed media URL
     return data.get("url") or data.get("mediaUrl") or public_url
 
@@ -51,7 +53,8 @@ def post_to_youtube(
         headers=_headers(api_key),
         timeout=60,
     )
-    resp.raise_for_status()
+    if not resp.ok:
+        raise Exception(f"YouTube post failed {resp.status_code}: {resp.text}")
     return resp.json().get("postSubmissionId", "")
 
 
@@ -79,5 +82,6 @@ def post_to_instagram(
         headers=_headers(api_key),
         timeout=60,
     )
-    resp.raise_for_status()
+    if not resp.ok:
+        raise Exception(f"Instagram post failed {resp.status_code}: {resp.text}")
     return resp.json().get("postSubmissionId", "")
