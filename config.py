@@ -20,18 +20,18 @@ CHANNELS = {
         "label": "Sir Supreme Kannada",
         "drive_folder_id": "13GQZUTsg7-5vgUH93JeTws0cvewyuxPd",  # Sir Supreme Kannada Final Edits
         "youtube_account_id": "31785",   # sirsupremekannada
-        "instagram_account_id": "PENDING",  # connect Instagram to Blotato to enable
+        "instagram_account_id": "37982",  # Sir Supreme Kannada Instagram
     },
     "supreme_tamilan": {
         "label": "Supreme Tamilan",
         "drive_folder_id": "1Y4siN7uikMracr3oOkygXzNlmmtU4uDx",  # Supreme Tamilan Final Edits
         "youtube_account_id": "31784",   # sirsupreme tamil
-        "instagram_account_id": "PENDING",  # connect Instagram to Blotato to enable
+        "instagram_account_id": "37984",  # Supreme Tamilan Instagram
     },
     "oxytosin": {
         "label": "Oxytosin",
         "drive_folder_id": "1IlzuqODoqDpBApdfBLSPw2V_ywwaYQCh",  # Oxytosin Final Edits
         "youtube_account_id": "31782",   # onlyoxytosin
-        "instagram_account_id": "PENDING",  # connect Instagram to Blotato to enable
+        "instagram_account_id": "37980",  # Oxytosin Official Instagram
     },
 }
