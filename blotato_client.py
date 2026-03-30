@@ -37,9 +37,11 @@ def post_to_youtube(
     """Publishes a video to YouTube via Blotato. Returns the postSubmissionId."""
     payload = {
         "post": {
-            "accountId": int(youtube_account_id),
-            "content": {
+            "target": {
+                "accountId": int(youtube_account_id),
                 "platform": "youtube",
+            },
+            "content": {
                 "text": description or title,
                 "mediaUrls": [media_url],
                 "title": title,
@@ -67,9 +69,11 @@ def post_to_instagram(
     """Publishes a video Reel to Instagram via Blotato. Returns the postSubmissionId."""
     payload = {
         "post": {
-            "accountId": int(instagram_account_id),
-            "content": {
+            "target": {
+                "accountId": int(instagram_account_id),
                 "platform": "instagram",
+            },
+            "content": {
                 "text": caption,
                 "mediaUrls": [media_url],
                 "format": "reel",
