@@ -5,3 +5,4 @@ timestamp_ist,channel,file_name,file_id,youtube_submission_id,instagram_submissi
 2026-03-30 20:17:35 IST,Oxytosin,oxytosin reel rate2_1.mp4,1jXWXS53D-EVFaqjKaIvYh46fY5lri3vp,,,FAILED,500 Server Error: Internal Server Error for url: https://backend.blotato.com/v2/media
 2026-03-30 21:14:46 IST,Supreme Tamilan,Mosamaaana dare.mp4,1iL_Pj6ootU6uniVoCfYnjai2zv5QgsfJ,,,FAILED,400 Client Error: Bad Request for url: https://backend.blotato.com/v2/posts
 2026-03-31 01:34:06 IST,Supreme Tamilan,Mosamaaana dare.mp4,1iL_Pj6ootU6uniVoCfYnjai2zv5QgsfJ,,,FAILED,400 Client Error: Bad Request for url: https://backend.blotato.com/v2/posts
+2026-03-31 01:36:07 IST,Supreme Tamilan,Mosamaaana dare.mp4,1iL_Pj6ootU6uniVoCfYnjai2zv5QgsfJ,,,FAILED,"YouTube post failed 400: {""reqId"":""1BrcwHwqT1WJeuxZVlI1HA/7632"",""statusCode"":400,""message"":""body.post must have required property 'target'""}"
