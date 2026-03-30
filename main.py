@@ -40,9 +40,11 @@ def process_channel(channel_id: str, channel: dict):
     file_name = video["name"]
     print(f"  Found video: {file_name} ({file_id})")
 
-    # Title = filename without extension
+    # Title = filename without extension (editors name the file = YouTube title)
     title = os.path.splitext(file_name)[0]
-    description = ""  # Add default description per channel here if needed
+    # Instagram caption = title + channel hashtags
+    hashtags = channel.get("instagram_hashtags", "")
+    ig_caption = f"{title}\n\n{hashtags}" if hashtags else title
 
     public_url = None
     yt_submission = ""
@@ -78,7 +80,7 @@ def process_channel(channel_id: str, channel: dict):
             print(f"  Posting to Instagram...")
             ig_submission = blotato_client.post_to_instagram(
                 media_url=media_url,
-                caption=title,
+                caption=ig_caption,
                 instagram_account_id=ig_account,
                 api_key=BLOTATO_API_KEY,
             )
