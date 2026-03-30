@@ -1,0 +1,54 @@
+name: Daily Video Upload
+
+on:
+  schedule:
+    # 4:30 AM UTC = 10:00 AM IST every day
+    - cron: "30 4 * * *"
+  # Allows manual trigger for testing
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # Needed to commit upload_log.csv back to repo
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run upload automation
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          BLOTATO_API_KEY: ${{ secrets.BLOTATO_API_KEY }}
+          SIR_SUPREME_DRIVE_FOLDER_ID: ${{ secrets.SIR_SUPREME_DRIVE_FOLDER_ID }}
+          SIR_SUPREME_YOUTUBE_ACCOUNT_ID: ${{ secrets.SIR_SUPREME_YOUTUBE_ACCOUNT_ID }}
+          SIR_SUPREME_INSTAGRAM_ACCOUNT_ID: ${{ secrets.SIR_SUPREME_INSTAGRAM_ACCOUNT_ID }}
+          SIR_SUPREME_KANNADA_DRIVE_FOLDER_ID: ${{ secrets.SIR_SUPREME_KANNADA_DRIVE_FOLDER_ID }}
+          SIR_SUPREME_KANNADA_YOUTUBE_ACCOUNT_ID: ${{ secrets.SIR_SUPREME_KANNADA_YOUTUBE_ACCOUNT_ID }}
+          SIR_SUPREME_KANNADA_INSTAGRAM_ACCOUNT_ID: ${{ secrets.SIR_SUPREME_KANNADA_INSTAGRAM_ACCOUNT_ID }}
+          SUPREME_TAMILAN_DRIVE_FOLDER_ID: ${{ secrets.SUPREME_TAMILAN_DRIVE_FOLDER_ID }}
+          SUPREME_TAMILAN_YOUTUBE_ACCOUNT_ID: ${{ secrets.SUPREME_TAMILAN_YOUTUBE_ACCOUNT_ID }}
+          SUPREME_TAMILAN_INSTAGRAM_ACCOUNT_ID: ${{ secrets.SUPREME_TAMILAN_INSTAGRAM_ACCOUNT_ID }}
+          OXYTOSIN_DRIVE_FOLDER_ID: ${{ secrets.OXYTOSIN_DRIVE_FOLDER_ID }}
+          OXYTOSIN_YOUTUBE_ACCOUNT_ID: ${{ secrets.OXYTOSIN_YOUTUBE_ACCOUNT_ID }}
+          OXYTOSIN_INSTAGRAM_ACCOUNT_ID: ${{ secrets.OXYTOSIN_INSTAGRAM_ACCOUNT_ID }}
+        run: python main.py
+
+      - name: Commit updated upload log
+        if: always()   # Run even if upload step failed, so partial logs are saved
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add upload_log.csv
+          git diff --staged --quiet || git commit -m "chore: update upload log [skip ci]"
+          git push
