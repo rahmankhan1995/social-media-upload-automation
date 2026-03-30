@@ -13,25 +13,25 @@ CHANNELS = {
     "sir_supreme": {
         "label": "Sir Supreme",
         "drive_folder_id": "11gI72zb_GVA9vqyvI1mDNbBLlqjl5pFI",  # Sir Supreme Final Edits
-        "youtube_account_id": os.environ["SIR_SUPREME_YOUTUBE_ACCOUNT_ID"],
-        "instagram_account_id": os.environ["SIR_SUPREME_INSTAGRAM_ACCOUNT_ID"],
+        "youtube_account_id": "31783",   # rahman khan (Sir Supreme)
+        "instagram_account_id": "37950", # @sirsupremeofficial
     },
     "sir_supreme_kannada": {
         "label": "Sir Supreme Kannada",
         "drive_folder_id": "13GQZUTsg7-5vgUH93JeTws0cvewyuxPd",  # Sir Supreme Kannada Final Edits
-        "youtube_account_id": os.environ["SIR_SUPREME_KANNADA_YOUTUBE_ACCOUNT_ID"],
-        "instagram_account_id": os.environ["SIR_SUPREME_KANNADA_INSTAGRAM_ACCOUNT_ID"],
+        "youtube_account_id": "31785",   # sirsupremekannada
+        "instagram_account_id": "PENDING",  # connect Instagram to Blotato to enable
     },
     "supreme_tamilan": {
         "label": "Supreme Tamilan",
         "drive_folder_id": "1Y4siN7uikMracr3oOkygXzNlmmtU4uDx",  # Supreme Tamilan Final Edits
-        "youtube_account_id": os.environ["SUPREME_TAMILAN_YOUTUBE_ACCOUNT_ID"],
-        "instagram_account_id": os.environ["SUPREME_TAMILAN_INSTAGRAM_ACCOUNT_ID"],
+        "youtube_account_id": "31784",   # sirsupreme tamil
+        "instagram_account_id": "PENDING",  # connect Instagram to Blotato to enable
     },
     "oxytosin": {
         "label": "Oxytosin",
         "drive_folder_id": "1IlzuqODoqDpBApdfBLSPw2V_ywwaYQCh",  # Oxytosin Final Edits
-        "youtube_account_id": os.environ["OXYTOSIN_YOUTUBE_ACCOUNT_ID"],
-        "instagram_account_id": os.environ["OXYTOSIN_INSTAGRAM_ACCOUNT_ID"],
+        "youtube_account_id": "31782",   # onlyoxytosin
+        "instagram_account_id": "PENDING",  # connect Instagram to Blotato to enable
     },
 }

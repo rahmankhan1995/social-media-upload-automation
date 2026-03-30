@@ -72,15 +72,19 @@ def process_channel(channel_id: str, channel: dict):
         )
         print(f"  YouTube submission ID: {yt_submission}")
 
-        # 5. Post to Instagram
-        print(f"  Posting to Instagram...")
-        ig_submission = blotato_client.post_to_instagram(
-            media_url=media_url,
-            caption=title,
-            instagram_account_id=channel["instagram_account_id"],
-            api_key=BLOTATO_API_KEY,
-        )
-        print(f"  Instagram submission ID: {ig_submission}")
+        # 5. Post to Instagram (skip if account not connected)
+        ig_account = channel.get("instagram_account_id", "")
+        if ig_account and ig_account != "PENDING":
+            print(f"  Posting to Instagram...")
+            ig_submission = blotato_client.post_to_instagram(
+                media_url=media_url,
+                caption=title,
+                instagram_account_id=ig_account,
+                api_key=BLOTATO_API_KEY,
+            )
+            print(f"  Instagram submission ID: {ig_submission}")
+        else:
+            print(f"  Instagram not connected — skipping.")
 
         # 6. Move video to 'Uploaded/' subfolder in Drive
         print(f"  Moving file to Uploaded/ folder...")
