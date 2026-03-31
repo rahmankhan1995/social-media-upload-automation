@@ -58,14 +58,15 @@ def get_next_video(folder_id: str) -> dict | None:
 def make_file_public(file_id: str) -> str:
     """
     Grants anyone-with-the-link read access and returns the direct download URL.
+    Uses &confirm=t to bypass Google's large-file virus scan warning page.
     """
     service = _get_service()
     service.permissions().create(
         fileId=file_id,
         body={"type": "anyone", "role": "reader"},
     ).execute()
-    # Direct download link that Blotato can fetch
-    return f"https://drive.google.com/uc?export=download&id={file_id}"
+    # confirm=t bypasses the virus-scan warning Google shows for large files
+    return f"https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t"
 
 
 def remove_public_access(file_id: str):
