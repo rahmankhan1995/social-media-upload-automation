@@ -77,7 +77,7 @@ def process_channel(channel_id: str, channel: dict):
         yt_submission = blotato_client.post_to_youtube(
             media_url=media_url,
             title=title,
-            description=description,
+            description=title,
             youtube_account_id=channel["youtube_account_id"],
             api_key=BLOTATO_API_KEY,
         )
