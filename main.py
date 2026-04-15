@@ -23,6 +23,11 @@ def process_channel(channel_id: str, channel: dict):
     print(f"Processing: {label}")
     print(f"{'='*50}")
 
+    # Check if this channel already uploaded successfully today
+    if tracker.already_uploaded_today(label):
+        print(f"  Already uploaded today. Skipping.")
+        return
+
     # 1. Find the next unuploaded video
     video = drive_client.get_next_video(folder_id)
     if not video:

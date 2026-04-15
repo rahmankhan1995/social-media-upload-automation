@@ -17,6 +17,23 @@ FIELDNAMES = [
 IST = timezone(timedelta(hours=5, minutes=30))
 
 
+def already_uploaded_today(channel_label: str) -> bool:
+    """Returns True if this channel already has a SUCCESS entry today (IST)."""
+    if not os.path.isfile(LOG_FILE):
+        return False
+    today = datetime.now(IST).strftime("%Y-%m-%d")
+    with open(LOG_FILE, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if (
+                row.get("channel") == channel_label
+                and row.get("status") == "SUCCESS"
+                and row.get("timestamp_ist", "").startswith(today)
+            ):
+                return True
+    return False
+
+
 def log(
     channel: str,
     file_name: str,
